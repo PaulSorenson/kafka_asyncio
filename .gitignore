@@ -1,0 +1,6 @@
+dist/
+*.egg-info
+.mypy_cache
+poetry.lock
+__pycache__/
+*.pyc
