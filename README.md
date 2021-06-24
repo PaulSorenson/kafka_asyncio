@@ -4,17 +4,17 @@ concept demo: "Monitor website availability over the network"
 
 Being a homework problem some @todos will be found.
 
-## Functions
+## Functional requirements
 
 - Periodically collect metrics on specified websites:
   - HTTP status code
   - response time
   - optionally check response against regex
+- use cloud Kafka for sending results
+- use cloud postgresql for persisting results
 
 ## Non functional requirements
 
-- use cloud Kafka for sending results
-- use cloud postgresql for persisting results
 - could handle a "reasonable amount of checks over a longer period of time"
 - includes tests
 - properly packaged
