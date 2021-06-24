@@ -1,0 +1,25 @@
+kafka:
+  service_uri: "kafka-1c4efd3-metrak-749b.aivencloud.com:18586"
+  topic: test_topic
+
+postgresql:
+  service_uri: "postgres://{username}:{password}@pg-4eb15-metrak-749b.aivencloud.com:18584/defaultdb?sslmode=require"
+  username: avnadmin
+
+# NOTE: for this exercise we will use the packaged files
+# these values are ignored.
+ssl:
+  cafile: null
+  certfile: null
+  keyfile: null
+  password: null
+
+sites:
+  - url:   "http://example.com"
+    regex: "[eE]xample Domain"
+
+  - url:   "http://example.org"
+    regex: null
+
+  - url:   "http://aiven.io"
+    regex: awesome

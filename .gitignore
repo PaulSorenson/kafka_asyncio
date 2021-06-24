@@ -1,6 +1,11 @@
+ca.pem
 dist/
+.dmypy.json
 *.egg-info
+ltex.dictionary.en-US.txt
 .mypy_cache
-poetry.lock
 __pycache__/
 *.pyc
+service.cert
+service.key
+settings.json
