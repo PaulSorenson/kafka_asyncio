@@ -42,7 +42,7 @@ from webcheck.page import PageMetrics
 
 # signal the consumer to end gracefully
 EOT = b"0x04"
-DEFAULT_INTERVAL = 30
+DEFAULT_INTERVAL = 15
 DEFAULT_GROUP_ID = "webchecker"
 
 # Use this for type pushed in internal queue at the consumer.

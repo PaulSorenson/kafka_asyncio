@@ -93,6 +93,8 @@ async def pg_writer(service_uri: str, payload: ConsumerPayload) -> int:
         )
         log.info(f"pg_writer: written {payload}")
         await connection.close(timeout=DEFAULT_TIMEOUT)
+    except asyncpg.exceptions.UniqueViolationError:
+        log.warning("unique key error @todo tidy up kafka consumer")
     except Exception:
         log.error("failure: postgresql connect - the pg-table-create command might help")
         # if we get insert errors lets just bail out.

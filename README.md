@@ -25,9 +25,9 @@ This has only been tested with Python 3.9 - it may work with earlier versions. I
 
 Setup from code
 
-- `git clone [github repo](https://github.com/aiven-recruitment/seniorsre-20210618-paulsorenson)` or download tarball.
+- `git clone` [github repo](https://github.com/aiven-recruitment/seniorsre-20210618-paulsorenson) or download tarball.
 - `python -m pip install poetry`
-- `cd webcheck` # most commands here assume you are in dir with `__main__.py`
+- `cd webcheck` # or where you cloned to. Most commands here assume you are in dir with `__main__.py`
 - `poetry install` # install dependencies. Note there is a `setup.py` also packaged which itself is built with `poetry build`
 - copy `ca.pem` `service.cert` `service.key` kafka ssl files into webcheck directory. These are available for download on the [aiven kafka console](https://console.aiven.io/project/metrak-749b/services/kafka-1c4efd3)
 - `python . --help` # displays the CLI commands, most of which have their own help. Examples:
@@ -100,12 +100,13 @@ Since this is a concept-demo/homework problem this section is to identify some i
 - strategy for dealing with intermittent failures (keep going, restart checker, exit application and leave restart to supervisor, ...)
 - credentials, certificates and config management. I have stored the passwords using `keyring`, this is convenient, otherwise the app will fallback to command line, environment variable or prompt the user.
 - signal handling or other mechanism for shutting down gracefully.
+- moving all the asyncio logic out of the main thread would leave the main thread for signal handling and other interactions.
 - deal with errors due to start up - eg there are probably conditions where a duplicate record is read from the topic resulting in key violations.
 - changing configurations on the fly eg a management topic for config changes or monitoring zookeeper instance.
 - serialization/deserialization of data. For this exercise I used json but protocol-buffers/thrift would probably be more suitable at scale. This would also include connecting the message format schema more robustly with the SQL (or use a document based store)
 - source code versioning - make it DRY
 - to properly unit test this requires some work with asyncio mock
-- decide whether process should automatically create the postgresql assets at start up. Currently there is a CLI command to do this.
+- decide whether process should automatically create the postgresql assets at start up. Currently use the CLI command to do this: `pg-table-create`
 - consider adding url specific parameters in config eg check interval.
 - logging just uses "root" logger, probably should have its own namespace. It does have the advantage for development at least of being able to control log level for libraries with `--log-level` option.
 - figure out how to set kafka topics programmatically.
