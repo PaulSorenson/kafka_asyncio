@@ -16,19 +16,11 @@ from webcheck.webchecker import ConsumerPayload
 logging.basicConfig()
 log = logging.getLogger()
 
-
 DEFAULT_TIMEOUT = 30
-
-
 # get this from yaml with place holders for username and password
-PG_SERVICE_URI = (
-    "postgres://{}:{}@pg-4eb15-metrak-749b.aivencloud.com:18584/defaultdb?sslmode=require"
-)
-
-
+PG_SERVICE_URI = "postgres://{}:{}@{pg_host}:18584/defaultdb?sslmode=require"
 TABLE_NAME = "webcheck"
 TIME_FIELD = "time"
-
 
 # @todo: compose SQL from PageMetrics schema
 # for now we hand code it taking care the
@@ -75,9 +67,8 @@ async def pg_writer(service_uri: str, payload: ConsumerPayload) -> int:
             PageMetrics -> ConsumerPayload -> insert_sql we are good.
 
     This is a one-shot writer, connections are created for each
-    write which is fine for this homework example but for higher
-    loads would probably want to maintain a connection and consider
-    other horizontal scaling options.
+    write. For higher throughput applications re-using the connection
+    could be a better idea.
     """
     try:
         connection: asyncpg.Connection = await asyncpg.connect(

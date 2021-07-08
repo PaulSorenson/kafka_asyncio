@@ -1,10 +1,10 @@
 kafka:
-  service_uri: "kafka-1c4efd3-metrak-749b.aivencloud.com:18586"
-  topic: test_topic
+  service_uri: "{kafka_host}:18586"
+  topic: my_topic
 
 postgresql:
-  service_uri: "postgres://{username}:{password}@pg-4eb15-metrak-749b.aivencloud.com:18584/defaultdb?sslmode=require"
-  username: avnadmin
+  service_uri: "postgres://{username}:{password}@{pg_host}:18584/defaultdb?sslmode=require"
+  username: my_user
 
 # NOTE: for this exercise we will use the packaged files
 # these values are ignored.
@@ -20,6 +20,3 @@ sites:
 
   - url:   "http://example.org"
     regex: null
-
-  - url:   "http://aiven.io"
-    regex: awesome

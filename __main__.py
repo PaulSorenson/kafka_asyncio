@@ -3,15 +3,7 @@
 """
 webcheck CLI entry points
 
-website checker
-
-Notes:
-- the configuration is packaged with the application -
-  in production these would come from say zookeeper
-
-kafka and postgresql instances in use:
-https://console.aiven.io/project/metrak-749b/services
-
+asyncio kafka mediated website checker concept
 """
 
 import asyncio
@@ -40,8 +32,7 @@ from webcheck.webchecker import (
 )
 
 CONFIG_FILE = Path("webcheck.yaml")
-KAFKA_SERVICE_URI = "kafka-1c4efd3-metrak-749b.aivencloud.com:18586"
-TOPIC = "test_topic"
+TOPIC = "my_topic"
 
 
 logging.basicConfig()

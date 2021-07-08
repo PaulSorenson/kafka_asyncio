@@ -19,12 +19,6 @@ we have a PageCheck collector. The key writer is a postgres writer but there is 
 a console_writer provided for printing the received data to stdout. This is enabled
 by default and can be disabled with --no-console argument
 
-Separation of concerns and "one" purpose has driven the design of the components is also
-heavily influences by asyncio semantics.
-
-The lines where asyncio.gather() is invoked are the key to understanding the task
-concurrencies.
-
 The kafka group_id is hardwired here.
 """
 
